@@ -14,17 +14,13 @@ app.set('view engine', 'handlebars');
 
 app.use(express.static(`${__dirname}/uploads`));
 
-let cantidadDeEquipos;
-
-fs.readdir('./data/equipos', (error, files) => {
-  cantidadDeEquipos = files.length;
-});
+filenames = fs.readdirSync('./data/equipos');
 
 app.get('/', (req, res) => {
     res.render('home', {
       layout: 'main',
       data: {
-        cantidadDeEquipos: cantidadDeEquipos,
+        cantidadEquipos: filenames.length,
       },
     });
   });
