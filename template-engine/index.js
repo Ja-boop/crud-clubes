@@ -26,30 +26,7 @@ app.get('/', (req, res) => {
   });
   
   
-  app.get('/form', (req, res) => {
-    console.log(req.files);
-    res.render('form', {
-      layout: 'main',
-    });
-  });
-  
-  app.post('/form', upload.single('imagen'), (req, res) => {
-    console.log(req.file);
-    res.render('form', {
-      layout: 'main',
-      data: {
-        mensaje: 'Éxito!',
-        nombreArchivo: req.file.filename,
-      },
-    });
-  });
-  
-  app.get('/equipos', (req, res) => {
-    const equipos = fs.readFileSync('./data/equipos.json');
-    res.setHeader('Content-Type', 'application/json');
-    res.send(equipos);
-  });
-  
+
   app.listen(PUERTO);
   console.log(`Escuchando en http://localhost:${PUERTO}`);
   
