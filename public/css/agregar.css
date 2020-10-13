@@ -1,0 +1,28 @@
+.borde {
+    border: 2px dashed steelblue;
+}
+
+.center {
+    text-align: center;
+}
+
+#container-form-agregar {
+    height: 800px;
+    margin-top: 150px;
+    margin-left: 250px;
+    margin-right: 250px;
+    margin-bottom: 150px;
+}
+
+.form-group {
+    margin-top: 50px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}

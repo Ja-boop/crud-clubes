@@ -36,6 +36,7 @@ let idEquipos = equiposJSON.map((equipos) => {
 app.get('/', (req, res) => {
     res.render('home', {
       layout: 'main',
+      style: 'home.css',
       data: {
         cantidadEquipos: filenames.length,
         nombreEquipos,
@@ -46,7 +47,11 @@ app.get('/', (req, res) => {
   });
 
 app.get('/equipos/agregar', (req, res) => {
-  res.render()
+  res.render('agregar', {
+    style: 'agregar.css',
+    layout: 'main',
+
+  });
 });
   
   
