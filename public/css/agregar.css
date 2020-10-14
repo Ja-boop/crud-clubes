@@ -7,7 +7,7 @@
 }
 
 #container-form-agregar {
-    height: 800px;
+    height: 1500px;
     margin-top: 150px;
     margin-left: 250px;
     margin-right: 250px;
@@ -25,4 +25,9 @@
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
+}
+
+.form-input {
+    width: 10%;
+    height: 40px;
 }
