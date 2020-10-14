@@ -1,7 +1,7 @@
-const fs = require('fs');
 const express = require('express');
 const app = express();
 const multer = require('multer');
+const fs = require('fs');
 
 const upload = multer({ dest: './uploads/imagenes'  });
 const exphbs = require('express-handlebars');
@@ -31,44 +31,4 @@ app.use(express.static(`${__dirname}/public`));
 app.use((req, res, next) => {
   res.status(404).send('404 Not found');
 });
-
-let rawdata = fs.readFileSync('./data/equipos.json');
-let equiposJSON = JSON.parse(rawdata);
-
-let nombreEquipos = equiposJSON.map((equipos) => {
-  return equipos.name;
-});
-
-let paisEquipos = equiposJSON.map((equipos) => {
-  return equipos.area.name;
-});
-
-let idEquipos = equiposJSON.map((equipos) => {
-  return equipos.id;
-});
-
-app.get('/', (req, res) => {
-    res.render('home', {
-      layout: 'main',
-      style: 'home.css',
-      data: {
-        cantidadEquipos: filenames.length,
-        nombreEquipos,
-        paisEquipos,
-        idEquipos,
-      },
-    });
-  });
-
-app.get('/equipos/agregar', (req, res) => {
-  res.render('agregar', {
-    style: 'agregar.css',
-    layout: 'main',
-
-  });
-});
-  
-  
-
-
   
