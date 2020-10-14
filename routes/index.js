@@ -10,12 +10,15 @@ let nombreEquipos = equiposJSON.map((equipos) => {
 });
 
 let paisEquipos = equiposJSON.map((equipos) => {
-  return equipos.area.name;
+  return equipos.area;
 });
 
 let idEquipos = equiposJSON.map((equipos) => {
   return equipos.id;
 });
+
+const jsonEquipos = fs.readFileSync('./data/equipos.json', 'utf-8');
+const equipos = JSON.parse(jsonEquipos);
 
 router.get('/', (req, res) => {
     res.render('home', {
@@ -36,6 +39,15 @@ router.get('/equipos/agregar', (req, res) => {
     layout: 'main',
 
   });
+});
+
+router.post('/equipos/agregar', (req, res) => {
+    equipos.push(req.body);
+
+    const jsonEquipos = JSON.stringify(equipos);
+    fs.writeFileSync('./data/equipos.json', jsonEquipos, 'utf-8');
+
+    res.send('Recibido!');
 });
 
 module.exports = router;
