@@ -6,29 +6,11 @@ const { v4: uuidv4 } = require('uuid');
 const jsonEquipos = fs.readFileSync('./data/equipos.json', 'utf-8');
 let equipos = JSON.parse(jsonEquipos);
 
-let nombreEquipos = equipos.map((equipos) => {
-    return equipos.name;
-  });
-  
-  let paisEquipos = equipos.map((equipos) => {
-    return equipos.area;
-  });
-  
-  let idEquipos = equipos.map((equipos) => {
-    return equipos.id;
-  });
-  
-
 router.get('/', (req, res) => {
     res.render('home', {
       layout: 'main',
       style: 'home.css',
-      data: {
-        cantidadEquipos: filenames.length,
-        nombreEquipos,
-        paisEquipos,
-        idEquipos,
-      },
+      equipos,
     });
 });
 
