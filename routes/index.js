@@ -3,23 +3,21 @@ const router = Router();
 const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
 
-let rawdata = fs.readFileSync('./data/equipos.json');
-let equiposJSON = JSON.parse(rawdata);
-
-let nombreEquipos = equiposJSON.map((equipos) => {
-  return equipos.name;
-});
-
-let paisEquipos = equiposJSON.map((equipos) => {
-  return equipos.area;
-});
-
-let idEquipos = equiposJSON.map((equipos) => {
-  return equipos.id;
-});
-
 const jsonEquipos = fs.readFileSync('./data/equipos.json', 'utf-8');
 let equipos = JSON.parse(jsonEquipos);
+
+let nombreEquipos = equipos.map((equipos) => {
+    return equipos.name;
+  });
+  
+  let paisEquipos = equipos.map((equipos) => {
+    return equipos.area;
+  });
+  
+  let idEquipos = equipos.map((equipos) => {
+    return equipos.id;
+  });
+  
 
 router.get('/', (req, res) => {
     res.render('home', {
