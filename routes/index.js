@@ -55,7 +55,9 @@ router.get('/equipos/:id/eliminar', (req, res) => {
     let jsonEquipos = fs.readFileSync('./data/equipos.json', 'utf-8');
     let equipos = JSON.parse(jsonEquipos);
 
-    equipos = equipos.filter(equipo => equipo.id != req.params.id);
+    equipos = equipos.filter(equipo => equipo.id != req.params.id); 
+    // El metodo filter me permite recorrer un array. Le voy a pedir que agregue los equipos que no coincidan con el ID
+    // Va quitar el que cumple con el ID
 
     jsonEquipos = JSON.stringify(equipos);
     fs.writeFileSync('./data/equipos.json', jsonEquipos, 'utf-8');
