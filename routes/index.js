@@ -3,34 +3,13 @@ const router = Router();
 const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
 
-let rawdata = fs.readFileSync('./data/equipos.json');
-let equiposJSON = JSON.parse(rawdata);
-
-let nombreEquipos = equiposJSON.map((equipos) => {
-  return equipos.name;
-});
-
-let paisEquipos = equiposJSON.map((equipos) => {
-  return equipos.area;
-});
-
-let idEquipos = equiposJSON.map((equipos) => {
-  return equipos.id;
-});
-
-const jsonEquipos = fs.readFileSync('./data/equipos.json', 'utf-8');
-let equipos = JSON.parse(jsonEquipos);
-
 router.get('/', (req, res) => {
+  const jsonEquipos = fs.readFileSync('./data/equipos.json', 'utf-8');
+  let equipos = JSON.parse(jsonEquipos);
     res.render('home', {
       layout: 'main',
       style: 'home.css',
-      data: {
-        cantidadEquipos: filenames.length,
-        nombreEquipos,
-        paisEquipos,
-        idEquipos,
-      },
+      equipos,
     });
 });
 
@@ -61,17 +40,24 @@ router.post('/equipos/agregar', (req, res) => {
         venue
     }
 
-    equipos.push(nuevoEquipo);
+    let jsonEquipos = fs.readFileSync('./data/equipos.json', 'utf-8');
+    let equipos = JSON.parse(jsonEquipos);
 
-    const jsonEquipos = JSON.stringify(equipos);
+    equipos.push(nuevoEquipo);
+    
+    jsonEquipos = JSON.stringify(equipos);
     fs.writeFileSync('./data/equipos.json', jsonEquipos, 'utf-8');
 
     res.redirect('/');
 });
 
 router.get('/equipos/:id/eliminar', (req, res) => {
+    let jsonEquipos = fs.readFileSync('./data/equipos.json', 'utf-8');
+    let equipos = JSON.parse(jsonEquipos);
+
     equipos = equipos.filter(equipo => equipo.id != req.params.id);
-    const jsonEquipos = JSON.stringify(equipos);
+
+    jsonEquipos = JSON.stringify(equipos);
     fs.writeFileSync('./data/equipos.json', jsonEquipos, 'utf-8');
 
     res.redirect('/');

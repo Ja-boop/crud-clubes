@@ -6,25 +6,25 @@
     <div class="borde" id="nombre-equipos">
         <p>Equipos</p>
         <ul>
-            {{#each data.nombreEquipos}}
-            <li>{{this}}</li>
+            {{#each equipos}}
+            <li>{{name}}</li>
             {{/each}}
         </ul>
     </div>
     <div class="borde" id="pais-equipos"> 
         <p>País</p>
         <u>
-            {{#each data.paisEquipos}}
-            <li>{{this}}</li>
+            {{#each equipos}}
+            <li>{{area}}</li>
             {{/each}}
         </u>
     </div>
     <div class="borde" id="acciones">
             <p>Acción</p>
             <ul>
-            {{#each data.idEquipos}}
+            {{#each equipos}}
             <li>
-                <a href="/equipos/{{this}}/ver">Ver,</a><a> Editar,</a><a href="/equipos/{{this}}/eliminar"> Eliminar</a>
+                <a href="/equipos/{{id}}/ver">Ver,</a><a> Editar,</a><a href="/equipos/{{id}}/eliminar"> Eliminar</a>
             </li>
             {{/each}}
         </ul>
