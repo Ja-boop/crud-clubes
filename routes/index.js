@@ -3,8 +3,6 @@ const router = Router();
 const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
 
-
-
 router.get('/', (req, res) => {
   const jsonEquipos = fs.readFileSync('./data/equipos.json', 'utf-8');
   let equipos = JSON.parse(jsonEquipos);
@@ -58,7 +56,7 @@ router.get('/equipos/:id/eliminar', (req, res) => {
     let equipos = JSON.parse(jsonEquipos);
 
     equipos = equipos.filter(equipo => equipo.id != req.params.id);
-    
+
     jsonEquipos = JSON.stringify(equipos);
     fs.writeFileSync('./data/equipos.json', jsonEquipos, 'utf-8');
 
