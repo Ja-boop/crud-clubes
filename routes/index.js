@@ -3,10 +3,11 @@ const router = Router();
 const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
 
-const jsonEquipos = fs.readFileSync('./data/equipos.json', 'utf-8');
-let equipos = JSON.parse(jsonEquipos);
+
 
 router.get('/', (req, res) => {
+  const jsonEquipos = fs.readFileSync('./data/equipos.json', 'utf-8');
+  let equipos = JSON.parse(jsonEquipos);
     res.render('home', {
       layout: 'main',
       style: 'home.css',
@@ -41,17 +42,23 @@ router.post('/equipos/agregar', (req, res) => {
         venue
     }
 
+    let jsonEquipos = fs.readFileSync('./data/equipos.json', 'utf-8');
+    let equipos = JSON.parse(jsonEquipos);
+
     equipos.push(nuevoEquipo);
 
-    const jsonEquipos = JSON.stringify(equipos);
+    
+    jsonEquipos = JSON.stringify(equipos);
     fs.writeFileSync('./data/equipos.json', jsonEquipos, 'utf-8');
 
     res.redirect('/');
 });
 
 router.get('/equipos/:id/eliminar', (req, res) => {
+    let jsonEquipos = fs.readFileSync('./data/equipos.json', 'utf-8');
+    let equipos = JSON.parse(jsonEquipos);
     equipos = equipos.filter(equipo => equipo.id != req.params.id);
-    const jsonEquipos = JSON.stringify(equipos);
+    jsonEquipos = JSON.stringify(equipos);
     fs.writeFileSync('./data/equipos.json', jsonEquipos, 'utf-8');
 
     res.redirect('/');
