@@ -45,8 +45,8 @@ router.post('/equipos/agregar', (req, res) => {
 
     equipos.push(nuevoEquipo);
     
-    jsonEquipos = JSON.stringify(equipos);
-    fs.writeFileSync('./data/equipos.json', jsonEquipos, 'utf-8');
+    const stringEquipos = JSON.stringify(equipos);
+    fs.writeFileSync('./data/equipos.json', stringEquipos, 'utf-8');
 
     res.redirect('/');
 });
@@ -59,8 +59,8 @@ router.get('/equipos/:id/eliminar', (req, res) => {
     // El metodo filter me permite recorrer un array. Le voy a pedir que agregue los equipos que no coincidan con el ID
     // Va quitar el que cumple con el ID
 
-    jsonEquipos = JSON.stringify(equipos);
-    fs.writeFileSync('./data/equipos.json', jsonEquipos, 'utf-8');
+    const stringEquipos = JSON.stringify(equipos);
+    fs.writeFileSync('./data/equipos.json', stringEquipos, 'utf-8');
 
     res.redirect('/');
 });
