@@ -46,7 +46,6 @@ router.post('/equipos/agregar', (req, res) => {
     let equipos = JSON.parse(jsonEquipos);
 
     equipos.push(nuevoEquipo);
-
     
     jsonEquipos = JSON.stringify(equipos);
     fs.writeFileSync('./data/equipos.json', jsonEquipos, 'utf-8');
@@ -57,7 +56,9 @@ router.post('/equipos/agregar', (req, res) => {
 router.get('/equipos/:id/eliminar', (req, res) => {
     let jsonEquipos = fs.readFileSync('./data/equipos.json', 'utf-8');
     let equipos = JSON.parse(jsonEquipos);
+
     equipos = equipos.filter(equipo => equipo.id != req.params.id);
+    
     jsonEquipos = JSON.stringify(equipos);
     fs.writeFileSync('./data/equipos.json', jsonEquipos, 'utf-8');
 
